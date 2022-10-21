@@ -34,15 +34,17 @@ Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man' 
 "Plug 'lyuts/vim-rtags'
 Plug 'ctrlpvim/ctrlp.vim'
+
 ""for some reason ycm gives me error (python) 
 "Plug 'ycm-core/YouCompleteMe'
+"
 Plug 'mbbill/undotree'
 ""auto complete coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'easymotion/vim-easymotion'
 Plug 'Preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'ajh17/VimCompletesMe'
+"Plug 'ajh17/VimCompletesMe'
 
 Plug 'yggdroot/indentline'
 Plug 'mhinz/vim-signify'
@@ -60,6 +62,8 @@ set background=dark
 if executable('rg')
     let g:rg_derive_root='true'
 endif
+
+
 
 let g:ctrlp_user_command = ['.git/','git --git-dir']
 let mapleader = " "
@@ -95,6 +99,12 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 "imap /<Tab> <plug>vim_completes_me_forward
 "Fix to windows ctrl+v overlap
 nnoremap <leader>v <C-v>
+
+" use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+""to fix first suggestion ommited in coc. Put in json config
+"  {'suggest.noselect': true}
 
 ""mapping for paste
 "Cool remap for the use of <viW> that keeps in register the pasted word NOT the deleted one

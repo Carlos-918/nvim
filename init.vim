@@ -7,7 +7,7 @@ set smartindent
 set nu
 set nohlsearch
 set hidden
-set nowrap
+set ignorecase
 set smartcase
 set noswapfile
 set nobackup
@@ -16,10 +16,12 @@ set undofile
 set incsearch
 set relativenumber
 set wrap
+"set nowrap
 set signcolumn=yes
 set scrolloff=8
 set showmode
 
+"get rid of mouse in nvim
 set mouse=
 
 "set colorcolumn=80
@@ -27,6 +29,7 @@ set mouse=
 
 
 call plug#begin('~/.config/nvim/plugged') 
+Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 "Plug 'tpope/vim-fugitive'
@@ -56,8 +59,17 @@ Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 call plug#end()
 
-colorscheme gruvbox
+"colorscheme gruvbox
+
 set background=dark
+"" Set contrast.
+"" This configuration option should be placed before `colorscheme gruvbox-material`.
+"" Available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'medium'
+
+" For better performance
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -95,9 +107,11 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
-"made to easy use in planckton
+nnoremap <leader>t gt
+nnoremap <leader>T gT
+""made to easy use in planckton
 "imap /<Tab> <plug>vim_completes_me_forward
-"Fix to windows ctrl+v overlap
+""Fix to windows ctrl+v overlap
 nnoremap <leader>v <C-v>
 
 " use <c-space>for trigger completion
